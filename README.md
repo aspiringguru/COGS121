@@ -20,3 +20,4 @@
   possible way of getting rid of incompatibilities between setups on
   your teammates' computers. (It's not mandatory, though.)
   - For example, here is a [starter Glitch app for Node.js and SQLite](https://glitch.com/~hello-sqlite)
+- To get around cross-domain restrictions that some APIs have, the easiest way is to make the API requests from your Node.js backend instead of from your frontend JavaScript code. Then your frontend JavaScript (in browser) can make regular ajax requests to your Node.js backend to query that data. The "[request](https://www.npmjs.com/package/request)" module is a popular one for making API requests on the backend. ([blog post](https://stackabuse.com/the-node-js-request-module/))
