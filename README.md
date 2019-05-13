@@ -1,6 +1,6 @@
 ### Tips for building Node.js web apps for your team project
 
-- Use a LTS (long-term support) version of Node.js instead of the latest one since LTS is more stable.
+- Download and use a LTS (long-term support) version of Node.js instead of the latest one since LTS is more stable.
 - Do not put `node_modules/` in your Git repository. Look at [.gitignore](.gitignore)
   to see how I've ignored it from my repository.
 - When you run `npm install` it will install the modules listed in your `package.json` file; to install individual modules that are not listed in `package.json` you need to explicitly mention their names: e.g., `npm install sqlite3`
@@ -21,3 +21,4 @@
   your teammates' computers. (It's not mandatory, though.)
   - For example, here is a [starter Glitch app for Node.js and SQLite](https://glitch.com/~hello-sqlite)
 - To get around cross-domain restrictions that some APIs have, the easiest way is to make the API requests from your Node.js backend instead of from your frontend JavaScript code. Then your frontend JavaScript (in browser) can make regular ajax requests to your Node.js backend to query that data. The "[request](https://www.npmjs.com/package/request)" module is a popular one for making API requests on the backend. ([blog post](https://stackabuse.com/the-node-js-request-module/))
+- A good general strategy for debugging is to start with a WORKING version, such as trying to get the petsapp tutorial working, and then slowly evolve that version into what you need to do. If you start with something that doesn't work and find yourself semi-randomly commenting out lines, adding lines of code, etc., then that is not a systematic debugging strategy. Instead, try to make a super-simple working version of your code (potentially based on the petsapp tutorial code). And use lots of `console.log()` statements in both your frontend and backend code to figure out what code is executing and with what values.
