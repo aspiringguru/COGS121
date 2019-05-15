@@ -3,7 +3,7 @@ Accompanying YouTube video playlist: https://www.youtube.com/playlist?list=PLzV5
 ### Tips for building Node.js web apps for your team project
 
 - Download and use a LTS (long-term support) version of Node.js instead of the latest one since LTS is more stable.
-  - Ideally, make sure all your team members have the same version of Node.js: run `node --version` to check.
+  - Try to make sure all of your teammates have the same versions of Node.js and npm installed (run `node -v` and `npm -v` to check your version numbers).
 - Do not put `node_modules/` in your Git repository. Look at [.gitignore](.gitignore)
   to see how I've ignored it from my repository.
 - When you run `npm install` it will install the modules listed in your `package.json` file; to install individual modules that are not listed in `package.json` you need to explicitly mention their names: e.g., `npm install sqlite3`
@@ -14,9 +14,6 @@ Accompanying YouTube video playlist: https://www.youtube.com/playlist?list=PLzV5
 - Use `console.log()` in both your frontend and backend code to understand what code is executing and when
   - be especially aware of *asynchronous code* and callback functions, since they often execute not in the order you're expecting
 - Always remember to save your code, restart your server, and reload your frontend in your browser to see the latest edits. [nodemon](https://nodemon.io/) can automatically restart your server for you, and some browser extensions can auto-reload webpages.
-- Try to make sure all of your teammates have the same versions of
-  Node.js and npm installed (run `node -v` and `npm -v` to check your
-  version numbers).
 - [Glitch](https://glitch.com/) provides free web hosting and an entirely
   web-based coding environment for Node.js apps. It can also sync
   with your team's GitHub repository. Feel free to try it as one
