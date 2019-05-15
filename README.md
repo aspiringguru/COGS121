@@ -1,6 +1,9 @@
+Accompanying YouTube video playlist: https://www.youtube.com/playlist?list=PLzV58Zm8FuBIWu1zvGRUfn0Xh6HXRg9cG
+
 ### Tips for building Node.js web apps for your team project
 
 - Download and use a LTS (long-term support) version of Node.js instead of the latest one since LTS is more stable.
+  - Ideally, make sure all your team members have the same version of Node.js: run `node --version` to check.
 - Do not put `node_modules/` in your Git repository. Look at [.gitignore](.gitignore)
   to see how I've ignored it from my repository.
 - When you run `npm install` it will install the modules listed in your `package.json` file; to install individual modules that are not listed in `package.json` you need to explicitly mention their names: e.g., `npm install sqlite3`
