@@ -1,0 +1,7 @@
+https://www.youtube.com/watch?v=TMg--xh2CaM&list=PLzV58Zm8FuBIWu1zvGRUfn0Xh6HXRg9cG
+https://github.com/aspiringguru/COGS121
+http://courses.pgbovine.net/cogs121/
+
+
+npm install
+node server.js

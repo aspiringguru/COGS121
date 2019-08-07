@@ -1,3 +1,5 @@
+const PORT = 3000;
+console.log("PORT:", PORT)
 // Node.js + Express server backend for petsapp
 //
 // COGS121 by Philip Guo
@@ -38,6 +40,7 @@ app.use(express.static('static_files'));
 const fakeDatabase = {
   'Philip': {job: 'professor', pet: 'cat.jpg'},
   'John': {job: 'student',   pet: 'dog.jpg'},
+  'Peter': {job: 'cleaner',   pet: 'dog.jpg'},
   'Carol': {job: 'engineer',  pet: 'bear.jpg'}
 };
 
@@ -53,6 +56,7 @@ const fakeDatabase = {
 // To test, open this URL in your browser:
 //   http://localhost:3000/users
 app.get('/users', (req, res) => {
+  console.log("typeof(fakeDatabase):", typeof(fakeDatabase))
   const allUsernames = Object.keys(fakeDatabase); // returns a list of object keys
   console.log('allUsernames is:', allUsernames);
   res.send(allUsernames);
@@ -77,6 +81,6 @@ app.get('/users/:userid', (req, res) => {
 });
 
 // start the server at URL: http://localhost:3000/
-app.listen(3000, () => {
-  console.log('Server started at http://localhost:3000/');
+app.listen(PORT, () => {
+  console.log('Server started at http://localhost:',PORT);
 });

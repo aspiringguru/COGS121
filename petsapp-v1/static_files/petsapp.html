@@ -1,27 +1,20 @@
 <!--
-
 Web frontend for petsapp
-
 COGS121 by Philip Guo
 https://github.com/pgbovine/COGS121
-
 Start ../server.js and then visit this URL to view this webpage:
-
 http://localhost:3000/petsapp.html
-
 -->
 
 <html>
 <head>
 <title>PetsApp</title>
-
 <script src="jquery-3.3.1.min.js"></script>
-
 <script type="text/javascript">
-
 // jQuery convention for running when the document has been fully loaded:
 $(document).ready(() => {
   $('#readButton').click(() => {
+      console.log("readButton clicked.")
     const requestURL = 'users/' + $('#nameBox').val();
     console.log('making ajax request to:', requestURL);
 
@@ -41,6 +34,7 @@ $(document).ready(() => {
           $('#jobDiv').html('My job is ' + data.job);
           $('#petImage').attr('src', data.pet).attr('width', '300px');
         } else {
+          console.log("user "+$('#nameBox').val()+" not found.")
           $('#status').html('Error: could not find user at URL: ' + requestURL);
           // clear the display
           $('#jobDiv').html('');
@@ -51,6 +45,7 @@ $(document).ready(() => {
   });
 
   $('#allUsersButton').click(() => {
+    console.log("#allUsersButton clicked")
     $.ajax({
       url: 'users',
       type: 'GET',
