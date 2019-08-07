@@ -2,13 +2,12 @@
 const express = require('express');
 const app = express();
 
+//connect to database, replace fakeDatabase previously used.
+const sqlite3 = require('sqlite3');
+const db = new sqlite3.Database('pets.db');
+
 app.use(express.static('static_files'));
 
-const fakeDatabase = {
-  'Philip': {job: 'professor', pet: 'cat.jpg'},
-  'John': {job: 'student',   pet: 'dog.jpg'},
-  'Carol': {job: 'engineer',  pet: 'bear.jpg'}
-};
 
 
 // GET a list of all usernames
@@ -16,9 +15,12 @@ const fakeDatabase = {
 // To test, open this URL in your browser:
 //   http://localhost:3000/users
 app.get('/users', (req, res) => {
-  const allUsernames = Object.keys(fakeDatabase); // returns a list of object keys
-  console.log('allUsernames is:', allUsernames);
-  res.send(allUsernames);
+  db.all('SELECT NAME FROM users_to_pets', (err, rows) => {
+      console.log("rows\n", rows)
+      const allUsernames = rows.map(e => e.name);
+      console.log('allUsernames:\n', allUsernames);
+      res.send(allUsernames);
+  })
 });
 
 
@@ -30,13 +32,29 @@ app.get('/users', (req, res) => {
 //   http://localhost:3000/users/invalidusername
 app.get('/users/:userid', (req, res) => {
   const nameToLookup = req.params.userid; // matches ':userid' above
-  const val = fakeDatabase[nameToLookup];
-  console.log(nameToLookup, '->', val); // for debugging
-  if (val) {
-    res.send(val);
-  } else {
-    res.send({}); // failed, so return an empty object instead of undefined
-  }
+  console.log("/users/:userid called > nameToLookup:", nameToLookup);
+  db.all(
+      //SQL query
+      "SELECT * FROM users_to_pets WHERE name=$name",
+      //parameters to pass into SQL query
+      {
+          $name:nameToLookup,
+
+      },
+      //callback function to run when the query completes
+      (err, rows) => {
+          console.log("rows:\n", rows)
+          if (rows.length>0){
+              console.log("result obtained for ", nameToLookup)
+              res.send(rows[0]);
+              //nb: assuming only first row returned is valid.
+          }else {
+              console.log("no result for ", nameToLookup)
+              res.send({});
+              // failed, so return an empty object instead of undefined
+          }
+      }
+  )
 });
 
 // start the server at URL: http://localhost:3000/

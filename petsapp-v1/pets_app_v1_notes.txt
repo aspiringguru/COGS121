@@ -5,3 +5,17 @@ http://courses.pgbovine.net/cogs121/
 
 npm install
 node server.js
+
+
+npm install sqlite3
+
+
+https://www.npmjs.com/package/nodemon
+nodemon ./server.js localhost 8080
+
+dir
+#if can see pets.db, then delete.
+rm pets.db
+node create_database.js
+dir
+#now can see new pets.db file
